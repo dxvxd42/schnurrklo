@@ -1,5 +1,5 @@
 const KEY='schnurrklo-v1';
-const EAR_COLORS=['#d9a47c','#a8876b','#5b4a42','#e8c39e','#c96f4a','#b9b0a8','#6b6866'];
+const EAR_COLORS=['#d9a47c','#a8876b','#5b4a42','#e8c39e','#b9b0a8','#6b6866'];
 const TYPES=[
   {id:'pipi',label:'Pipi',em:'💧',sub:'kleines Geschäft'},
   {id:'kacka',label:'Häufchen',em:'💩',sub:'großes Geschäft'},
@@ -77,8 +77,9 @@ function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2
 
 function catFaceSVG(color){
   const n=parseInt(color.slice(1),16),lum=(0.299*(n>>16)+0.587*(n>>8&255)+0.114*(n&255));
-  const eye=lum<110?'#f4e3b0':'#4a3428';
-  return `<svg viewBox="0 0 64 64" width="70%" height="70%"><circle cx="22" cy="30" r="4" fill="${eye}"/><circle cx="42" cy="30" r="4" fill="${eye}"/><circle cx="23.3" cy="28.6" r="1.2" fill="#fff"/><circle cx="43.3" cy="28.6" r="1.2" fill="#fff"/><path d="M28.5 38h7l-3.5 3.5z" fill="#e07a7a"/><path d="M32 41.5q-3.5 4.5-8 2M32 41.5q3.5 4.5 8 2" stroke="${eye}" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M4 36h14M5 42h13M46 36h14M46 42h13" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".8"/></svg>`;
+  const line=lum<110?'#f4e3b0':'#4a3428'; // Mund hell auf dunklem Fell, dunkel auf hellem
+  const eye=(x)=>`<ellipse cx="${x}" cy="30" rx="5" ry="5.4" fill="#f2c230" stroke="#4a3428" stroke-width="1"/><ellipse cx="${x}" cy="30" rx="1.5" ry="4.2" fill="#2e211a"/><circle cx="${x+1.6}" cy="28" r="1.1" fill="#fff"/>`;
+  return `<svg viewBox="0 0 64 64" width="70%" height="70%">${eye(22)}${eye(42)}<path d="M28.5 38h7l-3.5 3.5z" fill="#e07a7a"/><path d="M32 41.5q-3.5 4.5-8 2M32 41.5q3.5 4.5 8 2" stroke="${line}" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M4 36h14M5 42h13M46 36h14M46 42h13" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".8"/></svg>`;
 }
 function avatar(c,size=''){
   return `<div class="avatar ${size}" style="--earc:${c.color}"><div class="face">${c.photo?`<img src="${esc(c.photo)}" alt="">`:catFaceSVG(c.color)}</div></div>`;
