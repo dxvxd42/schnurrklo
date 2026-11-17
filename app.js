@@ -1,5 +1,5 @@
 const KEY='schnurrklo-v1';
-const EAR_COLORS=['#d9a47c','#a8876b','#5b4a42','#e8c39e','#c96f4a','#b9b0a8'];
+const EAR_COLORS=['#d9a47c','#a8876b','#5b4a42','#e8c39e','#c96f4a','#b9b0a8','#6b6866'];
 const TYPES=[
   {id:'pipi',label:'Pipi',em:'💧',sub:'kleines Geschäft'},
   {id:'kacka',label:'Häufchen',em:'💩',sub:'großes Geschäft'},
